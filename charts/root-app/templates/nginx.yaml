@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-cd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dxh30/belajar-argocd.git
+    path: charts/nginx/
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      selfHeal: true
